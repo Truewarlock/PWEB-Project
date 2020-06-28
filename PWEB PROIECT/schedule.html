@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="topNavBar.css">
+  <link rel="stylesheet" href="css/schedule.css">
+  <link rel="icon" href="img/tab_logo.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<title>SpaceX</title>
+</head>
+<body>
+
+	<div class="topnav">
+  		<a href="index2.html">Home</a>
+  		<a href="tehnology.html">Tehnology</a>
+  		<a class="active" href="schedule.html">Launch Schedule</a>
+  		<div class="topnav-right">
+    		<a href="contact.html">Register</a>
+   			 <a href="author.html">Author</a>
+  		</div>
+	</div>
+
+
+
+  
+
+  <script>
+    let url1 = 'https://api.spacexdata.com/v3/launches/latest';
+    let url2 = 'https://api.spacexdata.com/v3/launches/upcoming';
+
+    fetch(url1)
+    .then(res1 => res1.json())
+    .then((out1) => {
+      
+      document.getElementById("mn1").innerHTML ="Mission name : "+ out1.mission_name;
+      document.getElementById("fn1").innerHTML ="Flight number: "+ out1.flight_number;
+      document.getElementById("hr1").innerHTML ="Mission date : "+ out1.launch_date_local;
+      document.getElementById("rl1").innerHTML ="Rocket name  : "+ out1.rocket.rocket_name;
+      })
+    .catch(err => { throw err });
+
+    fetch(url2)
+    .then(res2 => res2.json())
+    .then((out2) => {
+      
+      document.getElementById("mn2").innerHTML ="Mission name : "+ out2[0].mission_name;
+      document.getElementById("fn2").innerHTML ="Flight number: "+ out2[0].flight_number;
+      document.getElementById("hr2").innerHTML ="Mission date : "+ out2[0].launch_date_local;
+      document.getElementById("rl2").innerHTML ="Rocket name  : "+ out2[0].rocket.rocket_name;
+      })
+    .catch(err => { throw err });
+
+    document.body.style.backgroundColor = "#cccccc"; 
+    
+
+    
+  </script>
+
+<div style="font-size: large;text-align: center">
+  <h1>Last mission:</h1>
+  <p id="mn1">Waiting for request...</p>
+  <p id="fn1">Waiting for request...</p>
+  <p id="hr1">Waiting for request...</p>
+  <p id="rl1">Waiting for request...</p>
+
+</div>
+<div style="font-size: large;text-align: center">
+  <h1>Upcoming mission:</h1>
+  <p id="mn2">Waiting for request...</p>
+  <p id="fn2">Waiting for request...</p>
+  <p id="hr2">Waiting for request...</p>
+  <p id="rl2">Waiting for request...</p>
+
+</div>
+
+</body>
+</html>
